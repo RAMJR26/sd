@@ -1,0 +1,543 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(
+        180deg,
+        #ffd7ef,
+        #ffc5e6,
+        #ffb7de
+    );
+}
+
+.hearts{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    z-index:0;
+}
+
+.heart{
+    position:absolute;
+    color:#ff7aa9;
+    opacity:.35;
+    animation:float linear infinite;
+    user-select:none;
+    pointer-events:none;
+}
+
+.card{
+    position:relative;
+    z-index:2;
+
+    width:900px;
+    height:650px;
+
+    background:#fff;
+
+    border-radius:25px;
+
+    box-shadow:
+        0 20px 60px rgba(0,0,0,.15);
+
+    overflow:hidden;
+
+    display:flex;
+    flex-direction:column;
+}
+
+#tree{
+    flex:1;
+    position:relative;
+}
+
+.timer{
+    height:150px;
+
+    background:#fff7fb;
+
+    display:flex;
+    flex-direction:column;
+
+    justify-content:center;
+    align-items:center;
+
+    gap:20px;
+}
+
+.timer h2{
+    color:#ff5b9b;
+    font-size:28px;
+}
+
+#counter{
+    display:flex;
+    gap:35px;
+}
+
+#counter div{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+#counter span{
+    font-size:42px;
+    font-weight:bold;
+    color:#ff4f8c;
+}
+
+#counter small{
+    color:#666;
+    font-size:14px;
+}
+
+@keyframes float{
+
+    from{
+
+        transform:
+            translateY(110vh)
+            scale(.5);
+
+    }
+
+    to{
+
+        transform:
+            translateY(-20vh)
+            scale(1.2);
+
+    }
+
+}
+
+@media (max-width:950px){
+
+    .card{
+
+        width:95%;
+        height:90vh;
+
+    }
+
+    #counter{
+
+        gap:15px;
+
+    }
+
+    #counter span{
+
+        font-size:28px;
+
+    }
+
+    .timer h2{
+
+        font-size:22px;
+
+    }
+
+}
+/* ===========================
+   ÁRBOL
+=========================== */
+
+#tree{
+    position:relative;
+    flex:1;
+    overflow:hidden;
+    background:linear-gradient(
+        to top,
+        #fff9fb,
+        #ffffff
+    );
+}
+
+/* Suelo */
+
+.ground{
+
+    position:absolute;
+
+    bottom:0;
+
+    width:100%;
+    height:70px;
+
+    background:linear-gradient(
+        #7fd06d,
+        #5ca952
+    );
+
+}
+
+/* Tronco */
+
+.trunk{
+
+    position:absolute;
+
+    bottom:55px;
+    left:50%;
+
+    width:38px;
+    height:230px;
+
+    transform:translateX(-50%);
+
+    background:#6d4328;
+
+    border-radius:30px;
+
+    box-shadow:
+        inset -8px 0 rgba(0,0,0,.18),
+        inset 6px 0 rgba(255,255,255,.12);
+
+}
+
+/* Ramas */
+
+.branch{
+
+    position:absolute;
+
+    background:#6d4328;
+
+    border-radius:30px;
+
+    transform-origin:bottom center;
+
+}
+
+.left1{
+
+    width:22px;
+    height:150px;
+
+    bottom:210px;
+    left:49%;
+
+    transform:
+        rotate(-40deg);
+
+}
+
+.right1{
+
+    width:22px;
+    height:150px;
+
+    bottom:210px;
+    left:49%;
+
+    transform:
+        rotate(40deg);
+
+}
+
+.left2{
+
+    width:18px;
+    height:120px;
+
+    bottom:260px;
+    left:46%;
+
+    transform:
+        rotate(-70deg);
+
+}
+
+.right2{
+
+    width:18px;
+    height:120px;
+
+    bottom:260px;
+    left:52%;
+
+    transform:
+        rotate(70deg);
+
+}
+
+/* Lugar donde irán las flores */
+
+#flowers{
+
+    position:absolute;
+
+    inset:0;
+
+}
+/* ===========================
+        FLORES
+=========================== */
+
+.flower{
+
+    position:absolute;
+
+    width:14px;
+    height:14px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:14px;
+
+    user-select:none;
+    pointer-events:none;
+
+    opacity:0;
+
+    transform:scale(0);
+
+    animation:grow .5s ease forwards;
+
+    filter:
+        drop-shadow(0 0 3px rgba(255,180,0,.35));
+
+}
+
+@keyframes grow{
+
+    to{
+
+        opacity:1;
+        transform:scale(1);
+
+    }
+
+}
+/*==========================
+      FLORES REALISTAS
+==========================*/
+
+.flower{
+
+    position:absolute;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    transform:scale(0);
+
+    opacity:0;
+
+    animation:bloom .6s ease forwards;
+
+    transition:.3s;
+
+    user-select:none;
+
+    pointer-events:none;
+
+    will-change:transform;
+
+    filter:drop-shadow(
+        0 2px 3px rgba(0,0,0,.15)
+    );
+
+}
+
+.flower:hover{
+
+    transform:scale(1.5);
+
+}
+
+@keyframes bloom{
+
+    0%{
+
+        transform:scale(0) rotate(-40deg);
+
+        opacity:0;
+
+    }
+
+    60%{
+
+        transform:scale(1.15);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:scale(1);
+
+        opacity:1;
+
+    }
+
+}
+.miniBranch{
+
+    position:absolute;
+
+    width:9px;
+
+    background:#70452a;
+
+    border-radius:30px;
+
+    transform-origin:bottom center;
+
+    opacity:.95;
+
+    box-shadow:
+        inset -2px 0 rgba(0,0,0,.2);
+
+}
+/*=================================
+        ANIMACIONES DEL ÁRBOL
+=================================*/
+
+#flowers{
+
+    position:absolute;
+    inset:0;
+    animation:sway 5s ease-in-out infinite;
+
+}
+
+@keyframes sway{
+
+    0%{
+
+        transform:rotate(-1deg);
+
+    }
+
+    50%{
+
+        transform:rotate(1deg);
+
+    }
+
+    100%{
+
+        transform:rotate(-1deg);
+
+    }
+
+}
+
+.branch,
+.miniBranch,
+.trunk{
+
+    animation:treeMove 5s ease-in-out infinite;
+
+    transform-origin:bottom center;
+
+}
+
+@keyframes treeMove{
+
+    0%{
+
+        filter:brightness(1);
+
+    }
+
+    50%{
+
+        filter:brightness(1.05);
+
+    }
+
+    100%{
+
+        filter:brightness(1);
+
+    }
+
+}
+
+.petal{
+
+    position:absolute;
+
+    font-size:15px;
+
+    pointer-events:none;
+
+    user-select:none;
+
+    animation:fall linear forwards;
+
+    opacity:.85;
+
+}
+
+@keyframes fall{
+
+    0%{
+
+        transform:
+            translateY(-30px)
+            rotate(0deg);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translateY(750px)
+            translateX(60px)
+            rotate(540deg);
+
+        opacity:0;
+
+    }
+
+}
+
+.sparkle{
+
+    animation:sparkle 2s infinite;
+
+}
+
+@keyframes sparkle{
+
+    0%{
+
+        filter:brightness(1);
+
+    }
+
+    50%{
+
+        filter:brightness(1.7);
+
+    }
+
+    100%{
+
+        filter:brightness(1);
+
+    }
+
+}
